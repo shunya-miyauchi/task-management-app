@@ -6,8 +6,8 @@ class TasksController < ApplicationController
   end
 
   # 詳細
-  def show 
-
+  def show
+    @task = Task.find(params[:id])
   end
 
   # 新規作成
