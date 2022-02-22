@@ -27,9 +27,17 @@ class TasksController < ApplicationController
 
   # 編集
   def edit
+    @task = Task.find(params[:id])
   end
 
   def update
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      flash[:notice] = "編集しました"
+      redirect_to tasks_path
+    else 
+      render :edit
+    end
   end
 
   # 削除
