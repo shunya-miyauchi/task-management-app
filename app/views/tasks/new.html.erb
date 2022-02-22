@@ -1,14 +1,14 @@
 <h1>新規タスク</h1>
-
+<%= render 'layouts/error',name: @task %>
 <%= form_with(model:@task,local:true) do |t| %>
   <div>
-    <%= t.label :name,"タスク名" %><br>
-    <%= t.text_field :name %>
+    <div><%= t.label :name,"タスク名" %></div>
+    <div><%= t.text_field :name %></div>
   </div>
 
   <div>
-    <%= t.label :detail,"詳細" %><br>
-    <%= t.text_area :detail %>
+    <div><%= t.label :detail,"詳細" %></div>
+    <div><%= t.text_area :detail %></div>
   </div>
 
   <div>
