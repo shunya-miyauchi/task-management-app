@@ -1,0 +1,13 @@
+<h1>タスク管理</h1>
+<table>  
+  <tr>
+    <th>タスク名</th>
+    <th>詳細</th>
+  </tr> 
+  <% @tasks.each do |task| %>
+    <tr>
+      <td><%= task.name %></td>
+      <td><%= task.detail %></td>
+    </tr>
+  <% end %>
+</table>  
