@@ -12,7 +12,17 @@ class TasksController < ApplicationController
 
   # 新規作成
   def new
+    @task = Task.new
+  end
 
+  def create
+    @task = Task.new(task_params)
+    if @task.save
+      flash[:notice] = "タスク追加"
+      redirect_to tasks_path
+    else
+      render :new
+    end
   end
 
   # 編集
@@ -28,6 +38,8 @@ class TasksController < ApplicationController
 
   private
 
-
+  def task_params
+    params.require(:task).permit(:name,:detail)
+  end
 
 end

@@ -1,0 +1,19 @@
+<h1>新規タスク</h1>
+
+<%= form_with(model:@task,local:true) do |t| %>
+  <div>
+    <%= t.label :name,"タスク名" %><br>
+    <%= t.text_field :name %>
+  </div>
+
+  <div>
+    <%= t.label :detail,"詳細" %><br>
+    <%= t.text_area :detail %>
+  </div>
+
+  <div>
+    <%= t.submit "追加" %>
+    <%= link_to "戻る",tasks_path %>
+  </div>
+<% end %>
+
