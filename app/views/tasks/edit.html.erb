@@ -1,18 +1,1 @@
-<h1>編集</h1>
-<%= render 'layouts/error',name: @task %>
-<%= form_with(model:@task,local:true) do |t| %>
-  <div>
-    <div><%= t.label :name,"タスク名" %></div>
-    <div><%= t.text_field :name %></div>
-  </div>
-
-  <div>
-    <div><%= t.label :detail,"詳細" %></div>
-    <div><%= t.text_area :detail %></div>
-  </div>
-
-  <div>
-    <%= t.submit "編集" %>
-    <%= link_to "戻る",tasks_path %>
-  </div>
-<% end %>
+<%= render 'form',title:"編集",submit:"編集" %>
