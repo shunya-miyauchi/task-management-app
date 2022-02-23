@@ -1,0 +1,10 @@
+<% if name.errors.any? %>
+	<div id="error_explanation ">
+		<p class="alert alert-danger">エラー</p>
+		<ul>
+			<% name.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>

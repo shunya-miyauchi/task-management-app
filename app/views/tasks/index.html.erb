@@ -1,0 +1,19 @@
+<h1>タスク管理</h1>
+<%= notice %>
+<table>  
+  <tr>
+    <th>タスク名</th>
+    <th>詳細</th>
+  </tr> 
+  <% @tasks.each do |task| %>
+    <tr>
+      <td><%= task.title %></td>
+      <td><%= task.detail %></td>
+      <td><%= link_to "詳細",task_path(task.id) %></td>
+      <td><%= link_to "編集",edit_task_path(task.id) %></td>
+      <td><%= button_to "削除",task_path(task.id),method: :delete %></td>
+    </tr>
+  <% end %>
+</table>  
+
+<%= link_to "新規タスク",new_task_path %>

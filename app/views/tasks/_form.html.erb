@@ -1,0 +1,18 @@
+<h1><%= title %></h1>
+<%= render 'layouts/error',name: @task %>
+<%= form_with(model:@task,local:true) do |t| %>
+  <div>
+    <div><%= t.label :title,"タスク名" %></div>
+    <div><%= t.text_field :title %></div>
+  </div>
+
+  <div>
+    <div><%= t.label :detail,"詳細" %></div>
+    <div><%= t.text_area :detail %></div>
+  </div>
+
+  <div>
+    <%= t.submit(submit)  %> 
+    <%= link_to "戻る",tasks_path %>
+  </div>
+<% end %>
