@@ -2,7 +2,7 @@
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| name               | string     | null: false                    |
+| title              | string     | null: false                    |
 | email              | string     | null: false,unique: true       |
 | password_digest    | string     | null: false                    |
 

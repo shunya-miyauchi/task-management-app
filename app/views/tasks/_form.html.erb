@@ -2,8 +2,8 @@
 <%= render 'layouts/error',name: @task %>
 <%= form_with(model:@task,local:true) do |t| %>
   <div>
-    <div><%= t.label :name,"タスク名" %></div>
-    <div><%= t.text_field :name %></div>
+    <div><%= t.label :title,"タスク名" %></div>
+    <div><%= t.text_field :title %></div>
   </div>
 
   <div>
