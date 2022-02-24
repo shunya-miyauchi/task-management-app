@@ -7,6 +7,7 @@ RSpec.describe "タスク管理機能",type: :system do
         visit new_task_path
         fill_in "タスク名",with: "課題"
         fill_in "詳細",with: "今日終わらせる"
+        fill_in "終了期限",with: Time.current
         click_on "追加"
         expect(page).to have_content "今日"
       end      
@@ -14,7 +15,8 @@ RSpec.describe "タスク管理機能",type: :system do
   end
   describe "一覧表示機能" do
     let!(:task) { FactoryBot.create(:task) }
-    let!(:task_second) { FactoryBot.create(:task,title:"課題",detail:"終わらせたい") }
+    let!(:task_second) { FactoryBot.create(:task,title:"今日",detail:"いい天気",expired_at: Time.now.tomorrow) }
+    let!(:task_third) { FactoryBot.create(:task,title:"課題",detail:"終わらせたい",expired_at: Time.now.yesterday) }
     before do
       visit tasks_path
     end
@@ -27,6 +29,13 @@ RSpec.describe "タスク管理機能",type: :system do
       it "新しいタスクが一番上に表示される" do
         task_list = all(".task_list")
         expect(task_list[0]).to have_content "課題"
+      end
+    end
+    context "終了期限でソートするというリンクを押した場合" do
+      it "終了期限が遅いタスクが一番上に表示される" do
+        click_on "終了期限でソートする"
+        task_list = all(".task_list")
+        expect(task_list[0]).to have_content "今日"
       end
     end
   end
