@@ -2,7 +2,7 @@
 
 <%= form_with(url: tasks_path,scope: :search,method: :get,local: true) do |t| %>
   <%= t.search_field :title,placeholder:"タスク名検索" %>
-  <%= t.select :status,Task.statuses.keys,include_blank: "選択して下さい"  %>
+  <%= t.select :status,Task.statuses.keys,include_blank: "選択して下さい" %>
   <%= t.submit "検索" %>
 <% end %>
 
@@ -15,8 +15,8 @@
     <th>ステータス</th>
   </tr> 
   <% @tasks.each do |task| %>
-    <tr class="task_list">
-      <td><%= task.title %></td>
+    <tr>
+      <td class="task_title"><%= task.title %></td>
       <td><%= task.detail %></td>
       <td><%= task.expired_at.strftime("%Y/%m/%d %H:%M") %></td>
       <td><%= task.status %></td>
