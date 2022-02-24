@@ -12,9 +12,8 @@
 | use_id             | references | null: false, foreign_key: true |
 | name               | string     | null: false                    |
 | detail             | text       | null: false                    |
-| start_day          | date       | null: false                    |
-| expired_at         | date       | null: false                    |
-| status             | string     | null: false                    |
+| expired_at         | date       | null: false,default:->{"now()"}|
+| status             | string     | null: false, default:"未着手"   |
 
 *labels*
 | Column             | Type       | Options                        |
