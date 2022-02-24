@@ -13,7 +13,7 @@
 | name               | string     | null: false                    |
 | detail             | text       | null: false                    |
 | start_day          | date       | null: false                    |
-| end_day            | date       | null: false                    |
+| expired_at         | date       | null: false                    |
 | status             | string     | null: false                    |
 
 *labels*
