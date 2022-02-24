@@ -13,7 +13,7 @@
 
   <div>
     <div><%= t.label :status,"ステータス" %></div>
-    <div><%= t.select :status,[["未着手","未着手"],["着手中","着手中"],["完了","完了"]] %></div>
+    <div><%= t.select :status,Task.statuses.keys %></div>
   </div>
 
   <div>
