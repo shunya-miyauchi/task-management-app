@@ -3,21 +3,21 @@ class TasksController < ApplicationController
 
   # 一覧
   def index
-    @tasks = Task.all.create_latest
+    @tasks = Task.all.page(params[:page]).per(5).create_latest
     if params[:search].present?
       params_title = params[:search][:title]
       params_status = params[:search][:status]
       if (params_title && params_status).present?
-        @tasks = Task.title_search(params_title).status_search(params_status)
+        @tasks = Task.page(params[:page]).per(5).title_search(params_title).status_search(params_status)
       elsif params_title.present?
-        @tasks = Task.title_search(params_title)
+        @tasks = Task.page(params[:page]).per(5).title_search(params_title)
       elsif params_status.present?
-        @tasks = Task.status_search(params_status)
+        @tasks = Task.page(params[:page]).per(5).status_search(params_status)
       end
     elsif params[:sort_expired]
-      @tasks = Task.all.expired_latest
+      @tasks = Task.all.page(params[:page]).per(5).expired_latest
     elsif params[:sort_priority]
-      @tasks = Task.all.order(priority: "ASC")
+      @tasks = Task.all.page(params[:page]).per(5).order(priority: "ASC")
     end
   end
 
