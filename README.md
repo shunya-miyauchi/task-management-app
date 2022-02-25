@@ -14,6 +14,7 @@
 | detail             | text       | null: false                    |
 | expired_at         | date       | null: false,default:->{"now()"}|
 | status             | string     | null: false, default:"未着手"   |
+| priority           | integer    | null: false, default:0         |
 
 *labels*
 | Column             | Type       | Options                        |
