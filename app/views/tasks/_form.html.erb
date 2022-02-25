@@ -21,6 +21,11 @@
     <div><%= t.datetime_field :expired_at %></div>
   </div>
 
+    <div>
+    <div><%= t.label :priority,"優先順位" %></div>
+    <div><%= t.select :priority, Task.priorities.keys %></div>
+  </div>
+
   <div>
     <%= t.submit(submit)  %> 
     <%= link_to "戻る",tasks_path %>
