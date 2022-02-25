@@ -5,10 +5,10 @@ RSpec.describe "タスク管理機能",type: :system do
     context "タスクを新規作成した場合" do
       it "作成したタスクが表示される" do
         visit new_task_path
-        fill_in "タスク名",with: "課題"
-        fill_in "詳細",with: "今日終わらせる"
-        select "着手中", from: "ステータス"
-        fill_in "終了期限",with: Time.current
+        fill_in "task[title]",with: "課題"
+        fill_in "task[detail]",with: "今日終わらせる"
+        select "着手中", from: "task[status]"
+        fill_in "task[expired_at]",with: Time.current
         click_on "追加"
         expect(page).to have_content "着手中"
       end      
@@ -44,14 +44,18 @@ RSpec.describe "タスク管理機能",type: :system do
     end
     context "終了期限でソートするというリンクを押した場合" do
       it "終了期限が遅いタスクが一番上に表示される" do
-        click_on "終了期限でソートする"
+        click_button "dropdownMenuButton"
+        click_link "終了期限"
+        sleep 1
         expect(all(".task_title")[0]).to have_content "今日"
         expect(all(".task_title")[1]).to have_content "課題"
       end
     end
     context "優先順位でソートするというリンクを押した場合" do
-      it "終了期限が高いタスクが一番上に表示される" do
-        click_on "優先順位でソートする"
+      it "優先順が高いタスクが一番上に表示される" do
+        click_button "dropdownMenuButton"
+        click_link "優先順"
+        sleep 1
         expect(all(".task_priority")[0]).to have_content "高"
         expect(all(".task_priority")[2]).to have_content "低"
       end

@@ -1,33 +1,34 @@
 <h1><%= title %></h1>
+<hr>
 <%= render 'layouts/error',name: @task %>
 <%= form_with(model:@task,local:true) do |t| %>
-  <div>
-    <div><%= t.label :title,"タスク名" %></div>
-    <div><%= t.text_field :title %></div>
+  <div class="form-group">
+    <div><%= t.label :title,"タスク名",class:"exampleFormControlInput1" %></div>
+    <div><%= t.text_field :title,class:"form-control",id:"exampleFormControlInput1" %></div>
   </div>
 
-  <div>
-    <div><%= t.label :detail,"詳細" %></div>
-    <div><%= t.text_area :detail %></div>
+  <div class="form-group">
+    <div ><%= t.label :detail,"詳細",class:"exampleFormControlTextarea1" %></div>
+    <div ><%= t.text_area :detail,class:"form-control form-control",id:"exampleFormControlTextarea1" %></div>
   </div>
 
-  <div>
-    <div><%= t.label :status,"ステータス" %></div>
-    <div><%= t.select :status,Task.statuses.keys %></div>
+  <div class="form-group">
+    <div><%= t.label :status,"ステータス",class:"exampleFormControlSelect1" %></div>
+    <div><%= t.select :status,Task.statuses.keys,{},class:"form-control",id:"exampleFormControlSelect1" %></div>
   </div>
 
-  <div>
-    <div><%= t.label :expired_at,"終了期限" %></div>
-    <div><%= t.datetime_field :expired_at %></div>
+  <div class="form-group">
+    <div><%= t.label :expired_at,"終了期限",class:"exampleFormControlInput1" %></div>
+    <div><%= t.datetime_field :expired_at,class:"form-control",id:"exampleFormControlInput1" %></div>
   </div>
 
-    <div>
-    <div><%= t.label :priority,"優先順位" %></div>
-    <div><%= t.select :priority, Task.priorities.keys %></div>
+  <div class="form-group">
+    <div><%= t.label :priority,"優先順位",class:"exampleFormControlSelect1"  %></div>
+    <div><%= t.select :priority, Task.priorities.keys,{},class:"form-control",id:"exampleFormControlSelect1" %></div>
   </div>
 
-  <div>
-    <%= t.submit(submit)  %> 
-    <%= link_to "戻る",tasks_path %>
+  <div class="form-group">
+    <%= t.submit submit,class:"btn btn-outline-danger btn-sm"  %> 
+    <%= link_to "戻る",tasks_path,type:"button",class:"btn btn-outline-dark btn-sm" %>
   </div>
 <% end %>
