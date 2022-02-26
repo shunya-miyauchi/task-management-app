@@ -1,13 +1,55 @@
 <h1>タスク詳細</h1>
-
-<div>
-  <div>タスク名</div>
-  <div><%= @task.title %></div>
-</div>
-
-<div>
-  <div>詳細</div>
-  <div><%= @task.detail %></div>
-</div>
-
-<%= link_to "戻る",tasks_path %>
+<hr>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">タスク名</th>
+    </tr> 
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row"><%= @task.title %></td>
+    </tr>
+  </tbody>
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">詳細</th>
+    </tr> 
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row"><%= @task.detail %></td>
+    </tr>
+  </tbody>
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">終了期限</th>
+    </tr> 
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row"><%= @task.expired_at.strftime("%Y/%m/%d %H:%M") %></td>
+    </tr>
+  </tbody>
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ステータス</th>
+    </tr> 
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row"><%= @task.status %></td>
+    </tr>
+  </tbody>
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">優先順位</th>
+    </tr> 
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row"><%= @task.priority %></td>
+    </tr>
+  </tbody>
+</table>
+<%= link_to "戻る",tasks_path,type:"button",class:"btn btn-outline-dark btn-sm" %>
