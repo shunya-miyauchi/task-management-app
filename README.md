@@ -2,7 +2,7 @@
 *users*
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| title              | string     | null: false                    |
+| name               | string     | null: false                    |
 | email              | string     | null: false,unique: true       |
 | password_digest    | string     | null: false                    |
 
@@ -10,7 +10,7 @@
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | use_id             | references | null: false, foreign_key: true |
-| name               | string     | null: false                    |
+| title              | string     | null: false                    |
 | detail             | text       | null: false                    |
 | expired_at         | date       | null: false,default:->{"now()"}|
 | status             | string     | null: false, default:"未着手"   |
