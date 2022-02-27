@@ -24,9 +24,7 @@
 <% end %>
 <%= link_to "新規タスク",new_task_path,type:"button",class:"btn btn-danger btn-sm" %>
 
-<% flash.each do |key, value| %>
-  <%= content_tag(:p, value, class: "badge badge-warning") %>
-<% end %>
+<%= render 'layouts/flash' %>
 
 <table class="table">
   <thead class="thead-light">

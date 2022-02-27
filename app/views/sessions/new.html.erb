@@ -1,0 +1,18 @@
+<h1>ログイン</h1>
+<hr>
+<%= render 'layouts/flash' %>
+<%= form_with(scope: :session,url: sessions_path,local:true) do |t| %>
+  <div class="form-group">
+    <div><%= t.label :email,"アドレス",class:"exampleFormControlInput1" %></div>
+    <div><%= t.email_field :email,class:"form-control",id:"exampleFormControlInput1" %></div>
+  </div>
+
+  <div class="form-group">
+    <div ><%= t.label :password,"パスワード",class:"exampleFormControlTextarea1" %></div>
+    <div ><%= t.password_field :password,class:"form-control form-control",id:"exampleFormControlTextarea1" %></div>
+  </div>
+
+  <div class="form-group">
+    <%= t.submit "ログイン",class:"btn btn-outline-danger btn-sm"  %> 
+  </div>
+<% end %>
