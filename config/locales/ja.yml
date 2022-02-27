@@ -10,10 +10,15 @@ ja:
   activerecord:
     models:
       task: タスク
+      user: ユーザー
     attributes:
       task:
         title: タスク名
         detail: 詳細
+      user:
+        name: 名前
+        email: アドレス
+        password: パスワード
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
