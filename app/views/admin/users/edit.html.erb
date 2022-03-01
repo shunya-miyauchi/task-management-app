@@ -1,0 +1,29 @@
+<h1>編集</h1>
+<hr>
+<%= render 'layouts/error',name: @user %>
+<%= form_with(model: @user,url: admin_user_path,local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :name,"名前",class:"exampleFormControlInput1" %>
+    <%= f.text_field :name,class:"form-control",id:"exampleFormControlInput1" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email,"アドレス",class:"exampleFormControlInput1" %>
+    <%= f.email_field :email,class:"form-control",id:"exampleFormControlInput1" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password,"パスワード",class:"exampleFormControlInput1" %>
+    <%= f.password_field :password ,class:"form-control",id:"exampleFormControlInput1"%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :admin,"管理者",class:"exampleFormControlInput1" %>
+    <%= f.select :admin ,[['管理者',true],['一般',false]],class:"form-control",id:"exampleFormControlInput1"%>
+  </div>
+  
+  <div class="form-group">
+    <%= f.submit "編集",class:"btn btn-outline-danger btn-sm"  %>
+    <%= link_to "戻る",admin_users_path,type:"button",class:"btn btn-outline-dark btn-sm" %>
+  </div>
+<% end %>

@@ -5,6 +5,7 @@
 | name               | string     | null: false                    |
 | email              | string     | null: false,unique: true       |
 | password_digest    | string     | null: false                    |
+| admin              | boolean    | default: false                 |
 
 *tasks*
 | Column             | Type       | Options                        |
