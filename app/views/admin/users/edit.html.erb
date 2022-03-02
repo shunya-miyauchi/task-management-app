@@ -1,6 +1,7 @@
 <h1>編集</h1>
 <hr>
 <%= render 'layouts/error',name: @user %>
+<%= render 'layouts/flash' %>
 <%= form_with(model: @user,url: admin_user_path,local: true) do |f| %>
   <div class="form-group">
     <%= f.label :name,"名前",class:"exampleFormControlInput1" %>

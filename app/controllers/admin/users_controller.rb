@@ -31,7 +31,8 @@ class Admin::UsersController < ApplicationController
     if @user.update(user_params)
       flash[:notice] = "編集しました"
       redirect_to admin_users_path
-    else 
+    else
+      flash[:notice] = "編集できません"
       render :edit
     end
   end

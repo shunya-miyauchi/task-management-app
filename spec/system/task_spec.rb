@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe "タスク管理機能",type: :system do
+  let!(:user){ FactoryBot.create(:user) }
+  let!(:task){ FactoryBot.create(:task,user: user) }
+  let!(:task_second){ FactoryBot.create(:task_second,user: user) }
+  let!(:task_third){FactoryBot.create(:task_third,user: user) }
+  before do
+    visit new_session_path
+    fill_in "session[email]",with: "aaa@gmail.com"
+    fill_in "session[password]",with: "123456"
+    click_on "ログイン"
+  end
   describe "新規作成機能" do
     context "タスクを新規作成した場合" do
       it "作成したタスクが表示される" do
@@ -16,9 +26,6 @@ RSpec.describe "タスク管理機能",type: :system do
   end
 
   describe "一覧表示機能" do
-    let!(:task){ FactoryBot.create(:task) }
-    let!(:task_second){ FactoryBot.create(:task_second) }
-    let!(:task_third){FactoryBot.create(:task_third) }
     before do
       visit tasks_path
     end
@@ -36,9 +43,6 @@ RSpec.describe "タスク管理機能",type: :system do
   end
 
   describe "ソート機能" do
-    let!(:task){ FactoryBot.create(:task) }
-    let!(:task_second){ FactoryBot.create(:task_second) }
-    let!(:task_third){FactoryBot.create(:task_third) }
     before do
       visit tasks_path
     end
@@ -62,9 +66,6 @@ RSpec.describe "タスク管理機能",type: :system do
     end
   end
   describe "検索機能" do
-    let!(:task){ FactoryBot.create(:task) }
-    let!(:task_second){ FactoryBot.create(:task_second) }
-    let!(:task_third){FactoryBot.create(:task_third) }
     before do
       visit tasks_path
     end
@@ -95,10 +96,9 @@ RSpec.describe "タスク管理機能",type: :system do
   describe "詳細表示機能" do
     context "任意のタスク詳細画面に遷移した場合" do
       it "該当タスクの内容が表示される" do
-        FactoryBot.create(:task,title:"task")
         visit tasks_path
-        click_on "詳細"
-        expect(page).to have_content "task"
+        all("tbody tr")[0].click_on "詳細"
+        expect(page).to have_content "終わらせたい"
       end
     end        
   end
