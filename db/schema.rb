@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 2022_03_03_030301) do
   end
 
   create_table "tasklabels", force: :cascade do |t|
-    t.bigint "task_id"
-    t.bigint "label_id"
+    t.bigint "task_id", null: false
+    t.bigint "label_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["label_id"], name: "index_tasklabels_on_label_id"

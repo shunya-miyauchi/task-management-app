@@ -8,7 +8,9 @@ class Task < ApplicationRecord
   scope :create_latest, -> { order(created_at: "DESC") }
   scope :status_search, -> (params_status){ where(status: params_status) }
   scope :title_search, -> (params_title){ where("title like ?","%#{params_title}%")}
+  scope :label_search, -> (params_label){ where(id: Tasklabel.where(label_id: params_label).pluck(:task_id))}
   scope :expired_latest, -> { order(expired_at: "DESC") }
+
 
   belongs_to :user
 

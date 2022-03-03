@@ -6,11 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-name = "みやうち"
-email = "aaa@gmail.com"
-password = "123456"
-admin = true
-commit -
+# name = "みやうち"
+# email = "aaa@gmail.com"
+# password = "123456"
+# admin = true
+
+3.times do |n|
+Label.create!(
+  name: "ラベル#{n+1}",
+  )
+end
 
 # 5.times do |n|
 #   User.create!(
@@ -30,3 +35,4 @@ commit -
 #     user_id: 21,
 #   )
 # end
+
