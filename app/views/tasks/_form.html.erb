@@ -30,11 +30,11 @@
   <div>
     <% Label.all.each do |label| %>
       <% if action_name == 'new' || action_name == 'create' %>
-        <%= t.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
-        <%= label.name %>
+        <%= t.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id],"" %>
+        <%= t.label :label_ids, label.name, value: label[:id] %>
       <% elsif action_name == 'edit' || action_name == 'update' %>
         <%= t.check_box :label_ids, { multiple: true, checked: @task.label_ids.include?(label.id), disabled: label[:disabled], include_hidden: false}, label[:id], "" %>
-        <label><%= label.name %></label>
+        <%= t.label :label_ids, label.name, value: label[:id] %>
       <% end %>
     <% end %>
   </div>

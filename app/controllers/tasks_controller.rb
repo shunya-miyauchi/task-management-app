@@ -9,13 +9,13 @@ class TasksController < ApplicationController
       params_title = params[:search][:title]
       params_status = params[:search][:status]
       params_label = params[:search][:label]
-      if (params_title && params_status && params_label).present?
+      if params_title.presence && params_status.presence && params_label.presence
         @tasks = tasks.title_search(params_title).status_search(params_status).label_search(params_label).page(params[:page]).per(5)
-      elsif (params_title && params_label).present?
+      elsif params_title.presence && params_label.presence
         @tasks = tasks.title_search(params_title).label_search(params_label).page(params[:page]).per(5)
-      elsif (params_status && params_label).present?
+      elsif params_status.presence && params_label.presence
         @tasks = tasks.status_search(params_status).label_search(params_label).page(params[:page]).per(5)
-      elsif (params_title && params_status).present?
+      elsif params_title.presence && params_status.presence
         @tasks = tasks.title_search(params_title).status_search(params_status).page(params[:page]).per(5)
       elsif params_title.present?
         @tasks = tasks.title_search(params_title).page(params[:page]).per(5)

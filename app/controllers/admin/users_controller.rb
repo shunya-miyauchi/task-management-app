@@ -38,9 +38,14 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    flash[:notice] = "削除しました"
-    redirect_to admin_users_path
+    if @user.destroy
+      flash[:notice] = "削除しました"
+      redirect_to admin_users_path
+    else
+      flash[:notice] = "削除できません"
+      @users = User.select(:id, :name, :email, :created_at,:admin).includes(:tasks).order(id:"ASC")
+      render :index
+    end
   end
 
   private
