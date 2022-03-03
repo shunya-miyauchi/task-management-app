@@ -20,6 +20,7 @@ gem 'kaminari'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bcrypt'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -44,7 +45,6 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'webdrivers'
-  gem 'chromedriver-helper'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

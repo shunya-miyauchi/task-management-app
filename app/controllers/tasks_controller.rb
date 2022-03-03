@@ -3,21 +3,22 @@ class TasksController < ApplicationController
 
   # 一覧
   def index
-    @tasks = Task.all.page(params[:page]).per(5).create_latest
+    tasks = current_user.tasks
+    @tasks = tasks.all.page(params[:page]).per(5).create_latest
     if params[:search].present?
       params_title = params[:search][:title]
       params_status = params[:search][:status]
       if (params_title && params_status).present?
-        @tasks = Task.page(params[:page]).per(5).title_search(params_title).status_search(params_status)
+        @tasks = tasks.page(params[:page]).per(5).title_search(params_title).status_search(params_status)
       elsif params_title.present?
-        @tasks = Task.page(params[:page]).per(5).title_search(params_title)
+        @tasks = tasks.page(params[:page]).per(5).title_search(params_title)
       elsif params_status.present?
-        @tasks = Task.page(params[:page]).per(5).status_search(params_status)
+        @tasks = tasks.page(params[:page]).per(5).status_search(params_status)
       end
     elsif params[:sort_expired]
-      @tasks = Task.all.page(params[:page]).per(5).expired_latest
+      @tasks = tasks.all.page(params[:page]).per(5).expired_latest
     elsif params[:sort_priority]
-      @tasks = Task.all.page(params[:page]).per(5).order(priority: "ASC")
+      @tasks = tasks.all.page(params[:page]).per(5).order(priority: "ASC")
     end
   end
 
@@ -31,7 +32,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       flash[:notice] = "タスク追加"
       redirect_to tasks_path

@@ -1,0 +1,28 @@
+<h1>新規作成</h1>
+<%= render 'layouts/error',name: @user %>
+
+<%= form_with(model: @user, local: true) do |f| %>
+  <div>
+    <%= f.label :name,"名前" %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :email,"アドレス" %>
+    <%= f.email_field :email %>
+  </div>
+
+  <div>
+    <%= f.label :password,"パスワード" %>
+    <%= f.password_field :password %>
+  </div>
+  
+  <div>
+    <%= f.label :password_confirmation,"パスワード確認" %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  
+  <div>
+    <%= f.submit "新規作成" %>
+  </div>
+<% end %>

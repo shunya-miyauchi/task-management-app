@@ -1,0 +1,29 @@
+<h1>新規ユーザー</h1>
+<hr>
+<%= render 'layouts/error',name: @user %>
+<%= form_with(model: @user,url: admin_users_path,local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :name,"名前",class:"exampleFormControlInput1" %>
+    <%= f.text_field :name,class:"form-control",id:"exampleFormControlInput1" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email,"アドレス",class:"exampleFormControlInput1" %>
+    <%= f.email_field :email,class:"form-control",id:"exampleFormControlInput1" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password,"パスワード",class:"exampleFormControlInput1" %>
+    <%= f.password_field :password ,class:"form-control",id:"exampleFormControlInput1"%>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :password_confirmation,"パスワード確認",class:"exampleFormControlInput1" %>
+    <%= f.password_field :password_confirmation,class:"form-control",id:"exampleFormControlInput1" %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.submit "新規作成",class:"btn btn-outline-danger btn-sm"  %>
+    <%= link_to "戻る",admin_users_path,type:"button",class:"btn btn-outline-dark btn-sm" %>
+  </div>
+<% end %>

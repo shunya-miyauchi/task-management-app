@@ -22,11 +22,9 @@
     </div>
   </div>
 <% end %>
-<%= link_to "新規タスク",new_task_path,type:"button",class:"btn btn-danger btn-sm" %>
-
-<% flash.each do |key, value| %>
-  <%= content_tag(:p, value, class: "badge badge-warning") %>
-<% end %>
+<%= link_to "新規タスク",new_task_path,type:"button",class:"btn btn-secondary btn-sm" %>
+<%= link_to "管理者画面",admin_users_path,type:"button",class:"btn btn-danger btn-sm" %>
+<%= render 'layouts/flash' %>
 
 <table class="table">
   <thead class="thead-light">

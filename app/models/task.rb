@@ -9,4 +9,6 @@ class Task < ApplicationRecord
   scope :status_search, -> (params_status){ where(status: params_status) }
   scope :title_search, -> (params_title){ where("title like ?","%#{params_title}%")}
   scope :expired_latest, -> { order(expired_at: "DESC") }
+
+  belongs_to :user
 end
