@@ -11,4 +11,8 @@ class Task < ApplicationRecord
   scope :expired_latest, -> { order(expired_at: "DESC") }
 
   belongs_to :user
+
+  has_many :tasklabels, dependent: :destroy
+  has_many :labels, through: :tasklabels
+
 end
