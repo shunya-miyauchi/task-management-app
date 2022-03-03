@@ -17,11 +17,16 @@
 | status             | string     | null: false, default:"未着手"   |
 | priority           | integer    | null: false, default:0         |
 
+*tasklabels*
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| label_id           | references | foreign_key: true              |
+| task_id            | references | foreign_key: true              |
+
 *labels*
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| user_id            | references | null: false, foreign_key: true |
-| task_id            | references | null: false, foreign_key: true |
+| name               | string     |                                |
 
 #  Herokuデプロイ
 *バージョン*  
