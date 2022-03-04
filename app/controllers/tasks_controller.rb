@@ -4,21 +4,30 @@ class TasksController < ApplicationController
   # 一覧
   def index
     tasks = current_user.tasks
-    @tasks = tasks.all.page(params[:page]).per(5).create_latest
+    @tasks = tasks.all.create_latest.page(params[:page]).per(5)
     if params[:search].present?
       params_title = params[:search][:title]
       params_status = params[:search][:status]
-      if (params_title && params_status).present?
-        @tasks = tasks.page(params[:page]).per(5).title_search(params_title).status_search(params_status)
+      params_label = params[:search][:label]
+      if params_title.presence && params_status.presence && params_label.presence
+        @tasks = tasks.title_search(params_title).status_search(params_status).label_search(params_label).page(params[:page]).per(5)
+      elsif params_title.presence && params_label.presence
+        @tasks = tasks.title_search(params_title).label_search(params_label).page(params[:page]).per(5)
+      elsif params_status.presence && params_label.presence
+        @tasks = tasks.status_search(params_status).label_search(params_label).page(params[:page]).per(5)
+      elsif params_title.presence && params_status.presence
+        @tasks = tasks.title_search(params_title).status_search(params_status).page(params[:page]).per(5)
       elsif params_title.present?
-        @tasks = tasks.page(params[:page]).per(5).title_search(params_title)
+        @tasks = tasks.title_search(params_title).page(params[:page]).per(5)
       elsif params_status.present?
-        @tasks = tasks.page(params[:page]).per(5).status_search(params_status)
-      end
+        @tasks = tasks.status_search(params_status).page(params[:page]).per(5)
+      elsif params_label.present?
+        @tasks = tasks.label_search(params_label).page(params[:page]).per(5)
+      end 
     elsif params[:sort_expired]
-      @tasks = tasks.all.page(params[:page]).per(5).expired_latest
+      @tasks = tasks.all.expired_latest.page(params[:page]).per(5)
     elsif params[:sort_priority]
-      @tasks = tasks.all.page(params[:page]).per(5).order(priority: "ASC")
+      @tasks = tasks.all.order(priority: "ASC").page(params[:page]).per(5)
     end
   end
 
@@ -64,7 +73,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title,:detail,:expired_at,:status,:priority)
+    params.require(:task).permit(:title,:detail,:expired_at,:status,:priority,label_ids: [])
   end
 
   def set_task

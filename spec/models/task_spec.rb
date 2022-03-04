@@ -46,16 +46,6 @@ RSpec.describe "タスクモデル機能", type: :model do
         expect(Task.title_search("test_title").status_search("未着手")).not_to include(task_second)
         expect(Task.title_search("test_title").status_search("未着手").count).to eq 1
       end
-    end
-
-    
-    
-
-
-
-    
+    end    
   end
-  
-
-
 end

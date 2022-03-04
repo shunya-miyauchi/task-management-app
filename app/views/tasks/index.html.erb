@@ -6,8 +6,15 @@
       <%= t.search_field :title,placeholder:"タスク名検索",type:"text",class:"form-control",id:"inputCity" %>
     </span>
     <span class="form-group col-md-3">
-      <%= t.select :status,Task.statuses.keys,{include_blank: "選択して下さい"},id:"inputState",class:"form-control" %>
+      <%= t.select :status,Task.statuses.keys,{include_blank: "ステータス選択"},id:"inputState",class:"form-control" %>
     </span>
+
+    <span class="form-group col-md-3">
+      <%= t.select :label,Label.all.collect{|p|[p.name,p.id]},{include_blank: "ラベル選択"},id:"inputState",class:"form-control" %>
+    </span>
+
+
+
     <span>
       <%= t.submit "検索",class:"btn btn-secondary " %>
     </span>
@@ -34,6 +41,7 @@
       <th scope="col">終了期限</th>
       <th scope="col">ステータス</th>
       <th scope="col">優先順位</th>
+      <th scope="col">ラベル</th>
       <th scope="col"></th>
       <th scope="col"></th>
       <th scope="col"></th>
@@ -47,6 +55,11 @@
         <td><%= task.expired_at.strftime("%Y/%m/%d %H:%M") %></td>
         <td><%= task.status %></td>
         <td class="task_priority"><%= task.priority %></td>
+        <td>
+          <% task.labels.each do |task_label| %>
+            <span class="border border-dark rounded"><%= task_label.name %></span>
+          <% end %>
+        </td>
         <td><%= link_to "詳細",task_path(task.id),type:"button",class:"btn btn-outline-info btn-sm"  %></td>
         <td><%= link_to "編集",edit_task_path(task.id),type:"button",class:"btn btn-outline-secondary btn-sm"  %></td>
         <td><%= button_to "削除",task_path(task.id),method: :delete,type:"button",class:"btn btn-outline-danger btn-sm"  %></td>

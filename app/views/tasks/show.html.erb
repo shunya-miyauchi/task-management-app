@@ -51,5 +51,19 @@
       <td scope="row"><%= @task.priority %></td>
     </tr>
   </tbody>
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ラベル</th>
+    </tr> 
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row">
+        <% @task.labels.each do |task_label| %>
+          <span class="border border-dark rounded"><%= task_label.name %></span>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
 </table>
 <%= link_to "戻る",tasks_path,type:"button",class:"btn btn-outline-dark btn-sm" %>
